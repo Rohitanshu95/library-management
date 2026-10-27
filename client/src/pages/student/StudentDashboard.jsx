@@ -22,7 +22,7 @@ import { api } from '../../services/api';
 import { useAuth } from '../../state/AuthContext';
 
 export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
-  const { user } = useAuth();
+  const { user, setActiveTab: setGlobalTab } = useAuth();
   const [activeTab, setActiveTab] = useState('library_pass'); // 'library_pass', 'courses', 'pdfs', 'tests', 'profile', 'receipts'
   const [subData, setSubData] = useState(null);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -57,7 +57,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
         setLoading(false);
       }
     };
-    if (user) {
+    if (user && user.role === 'STUDENT') {
       fetchDashboardData();
     } else {
       setLoading(false);
@@ -76,6 +76,29 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
         <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '20px' }}>
           Please sign in to your registered student account to access your digital library passes, enrolled courses, and exam scorecards.
         </p>
+      </div>
+    );
+  }
+
+  if (user.role !== 'STUDENT') {
+    return (
+      <div style={{ maxWidth: '580px', margin: '80px auto', padding: '36px 28px', textAlign: 'center', background: '#ffffff', borderRadius: '14px', border: '1px solid #bfdbfe', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.08)' }}>
+        <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#eff6ff', color: '#1d4ed8', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+          <ShieldCheck size={36} />
+        </div>
+        <h3 style={{ fontSize: '1.35rem', color: '#0a2540', fontFamily: 'Cinzel, Georgia, serif', marginBottom: '8px' }}>
+          Official Administrator Account Active
+        </h3>
+        <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '24px' }}>
+          You are currently signed in as an Academy Administrative Officer (<strong>{user.email}</strong>). Student learning records and library desk passes are scoped exclusively to registered student accounts.
+        </p>
+        <button
+          className="btn-primary"
+          style={{ margin: '0 auto' }}
+          onClick={() => setGlobalTab('admin_dashboard')}
+        >
+          Open Secretariat Command Console
+        </button>
       </div>
     );
   }

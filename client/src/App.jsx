@@ -3,7 +3,6 @@ import { AuthProvider, useAuth } from './state/AuthContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { AuthModal } from './components/common/AuthModal';
-import { DemoQuickBar } from './components/common/DemoQuickBar';
 import { HomePage } from './pages/public/HomePage';
 import { LibraryPlansPage } from './pages/public/LibraryPlansPage';
 import { CoursesCatalogPage } from './pages/public/CoursesCatalogPage';
@@ -118,9 +117,6 @@ const MainApp = () => {
         onClose={() => setSelectedVideoCourse(null)}
         course={selectedVideoCourse}
       />
-
-      {/* Floating 1-Click Client Showcase Quick Bar */}
-      <DemoQuickBar onOpenAuth={() => setIsAuthOpen(true)} />
     </div>
   );
 };

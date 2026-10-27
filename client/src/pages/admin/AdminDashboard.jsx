@@ -24,8 +24,9 @@ import { api } from '../../services/api';
 import { useAuth } from '../../state/AuthContext';
 
 export const AdminDashboard = () => {
-  const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'users', 'gate_desk', 'inquiries', 'finance'
+  const { user, adminSubTab, setAdminSubTab } = useAuth();
+  const activeTab = adminSubTab || 'overview';
+  const setActiveTab = setAdminSubTab;
   const [metrics, setMetrics] = useState(null);
   const [inquiries, setInquiries] = useState([]);
   const [transactions, setTransactions] = useState([]);

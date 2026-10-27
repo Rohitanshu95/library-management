@@ -4,7 +4,7 @@ import { api } from '../../services/api';
 import { useAuth } from '../../state/AuthContext';
 
 export const AuthModal = ({ isOpen, onClose }) => {
-  const { loginUser, switchDemoRole } = useAuth();
+  const { loginUser } = useAuth();
   const [mode, setMode] = useState('SIGNIN'); // 'SIGNIN' | 'REGISTER'
   const [roleTab, setRoleTab] = useState('STUDENT'); // 'STUDENT' | 'ADMIN'
   const [loading, setLoading] = useState(false);
@@ -46,11 +46,6 @@ export const AuthModal = ({ isOpen, onClose }) => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleQuickDemo = async (role) => {
-    await switchDemoRole(role);
-    onClose();
   };
 
   return (
@@ -257,35 +252,47 @@ export const AuthModal = ({ isOpen, onClose }) => {
             )}
           </div>
 
-          {/* Showcase Demo 1-Click Evaluation Buttons */}
-          <div style={{ marginTop: '24px', borderTop: '1px dashed #cbd5e1', paddingTop: '16px', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#d97706', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-              <Sparkles size={14} /> Client Showcase 1-Click Persona Access
+          {/* Official Secretariat Helper for Admin Login */}
+          {roleTab === 'ADMIN' && mode === 'SIGNIN' && (
+            <div
+              style={{
+                marginTop: '20px',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                padding: '12px 14px',
+                fontSize: '0.8rem',
+                color: '#475569',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <strong style={{ color: '#0a2540', display: 'block' }}>Official Administrative Credentials:</strong>
+                <span>admin@stateacademy.gov.in</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail('admin@stateacademy.gov.in');
+                  setPassword('adminpassword123');
+                }}
+                style={{
+                  background: '#0a2540',
+                  color: '#ffffff',
+                  border: 'none',
+                  padding: '6px 12px',
+                  borderRadius: '4px',
+                  fontSize: '0.75rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                }}
+              >
+                Auto-Fill
+              </button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
-              <button
-                type="button"
-                onClick={() => handleQuickDemo('STUDENT')}
-                style={{ background: '#f8fafc', border: '1px solid #cbd5e1', padding: '8px 4px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', color: '#0a2540', cursor: 'pointer' }}
-              >
-                🎓 As Student
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickDemo('SUPER_ADMIN')}
-                style={{ background: '#f8fafc', border: '1px solid #cbd5e1', padding: '8px 4px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', color: '#0a2540', cursor: 'pointer' }}
-              >
-                🏛️ As Director
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickDemo('LIBRARY_OPERATOR')}
-                style={{ background: '#f8fafc', border: '1px solid #cbd5e1', padding: '8px 4px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', color: '#0a2540', cursor: 'pointer' }}
-              >
-                📋 Library Desk
-              </button>
-            </div>
-          </div>
+          )}
         </form>
       </div>
     </div>
