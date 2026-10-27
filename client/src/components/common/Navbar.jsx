@@ -519,8 +519,10 @@ export const Navbar = ({ onOpenAuth }) => {
           <div className="ticker-badge">
             <Sparkles size={12} /> NOTICE
           </div>
-          <div className="ticker-content">
-            ✦ OPSC OAS 2026 Comprehensive Batch admissions are open • Central Physical Library Morning & Evening slots open for new membership • Official GS Prelims Mock Test series live now • Helpline: 1800-345-0199
+          <div className="ticker-track">
+            <div className="ticker-content">
+              ✦ OPSC OAS 2026 Comprehensive Batch admissions are open • Central Physical Library Morning & Evening slots open for new membership • Official GS Prelims Mock Test series live now • Helpline: 1800-345-0199
+            </div>
           </div>
         </div>
       </header>
