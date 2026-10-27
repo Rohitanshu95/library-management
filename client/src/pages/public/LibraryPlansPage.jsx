@@ -171,9 +171,9 @@ export const LibraryPlansPage = ({ onApplyPlan }) => {
           </div>
 
           {/* Floor Layout Rows */}
-          <div style={{ background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+          <div style={{ background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             {/* Row A: Silent Cubicles */}
-            <div style={{ marginBottom: '16px' }}>
+            <div style={{ marginBottom: '16px', minWidth: '560px' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Row A — North Wing Silent Cubicles (A-01 to A-10)
               </div>
@@ -207,7 +207,7 @@ export const LibraryPlansPage = ({ onApplyPlan }) => {
             </div>
 
             {/* Row B: General Reading Desks */}
-            <div style={{ marginBottom: '16px' }}>
+            <div style={{ marginBottom: '16px', minWidth: '560px' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Row B — Central Air-Conditioned Hall (B-01 to B-10)
               </div>
@@ -241,7 +241,7 @@ export const LibraryPlansPage = ({ onApplyPlan }) => {
             </div>
 
             {/* Row C: Digital Workstation Desks */}
-            <div>
+            <div style={{ minWidth: '560px' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Row C — LAN & Power Workstations (C-01 to C-10)
               </div>

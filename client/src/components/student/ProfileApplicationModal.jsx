@@ -46,27 +46,11 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
   };
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(5, 19, 41, 0.8)',
-        backdropFilter: 'blur(6px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1100,
-        padding: '20px',
-      }}
-    >
+    <div className="responsive-modal-overlay">
       <div
+        className="responsive-modal-box"
         style={{
-          background: '#ffffff',
-          borderRadius: '12px',
-          width: '100%',
           maxWidth: '620px',
-          maxHeight: '90vh',
-          overflowY: 'auto',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)',
           border: '1px solid #cbd5e1',
         }}
@@ -97,7 +81,7 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
         )}
 
         <form onSubmit={handleSubmit} style={{ padding: '24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '14px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', color: '#334155', marginBottom: '4px' }}>
                 Father's / Guardian Name *
@@ -126,7 +110,7 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px', marginBottom: '14px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', color: '#334155', marginBottom: '4px' }}>
                 Gender *
@@ -188,7 +172,7 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px', marginBottom: '14px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', color: '#334155', marginBottom: '4px' }}>
                 City *
@@ -232,7 +216,7 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', color: '#334155', marginBottom: '4px' }}>
                 Primary Target Examination *

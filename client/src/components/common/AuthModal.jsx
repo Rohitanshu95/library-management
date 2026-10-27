@@ -49,28 +49,13 @@ export const AuthModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(5, 19, 41, 0.75)',
-        backdropFilter: 'blur(5px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000,
-        padding: '20px',
-      }}
-    >
+    <div className="responsive-modal-overlay">
       <div
+        className="responsive-modal-box"
         style={{
-          background: '#ffffff',
-          borderRadius: '12px',
-          width: '100%',
           maxWidth: '460px',
-          overflow: 'hidden',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           border: '1px solid #cbd5e1',
+          overflow: 'hidden',
         }}
       >
         {/* Header */}

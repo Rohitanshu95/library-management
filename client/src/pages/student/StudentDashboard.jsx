@@ -104,30 +104,23 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
   }
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '30px auto 80px', padding: '0 24px' }}>
+    <div className="page-container">
       {/* Student Profile Overview Header */}
       <div
+        className="responsive-banner"
         style={{
           background: 'linear-gradient(135deg, #0a2540 0%, #0f3460 100%)',
           color: '#ffffff',
-          borderRadius: '12px',
-          padding: '24px 30px',
-          marginBottom: '30px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          boxShadow: 'var(--shadow-md)',
-          borderBottom: '3px solid #d97706',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div className="responsive-banner-left">
           <img
             src={user?.avatar || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=250'}
             alt={user?.name}
-            style={{ width: '64px', height: '64px', borderRadius: '50%', border: '3px solid #f59e0b', objectFit: 'cover' }}
+            style={{ width: '64px', height: '64px', borderRadius: '50%', border: '3px solid #f59e0b', objectFit: 'cover', flexShrink: 0 }}
           />
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
               <h2 style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, Georgia, serif', margin: 0 }}>
                 {user?.name}
               </h2>
@@ -141,7 +134,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'right' }}>
+        <div className="responsive-banner-right">
           <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Registered Contact</div>
           <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#ffffff' }}>{user?.email}</div>
           <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>+91 {user?.phone}</div>
@@ -149,7 +142,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
       </div>
 
       {/* Sub-Navigation Tabs */}
-      <div style={{ display: 'flex', gap: '8px', borderBottom: '2px solid #e2e8f0', marginBottom: '28px', overflowX: 'auto', paddingBottom: '4px' }}>
+      <div className="responsive-tabs-bar">
         {[
           { id: 'library_pass', label: 'My Library QR Pass', icon: Library },
           { id: 'courses', label: 'My Courses & Lessons', icon: BookOpen },
@@ -164,20 +157,10 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
+              className="responsive-tab-btn"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 16px',
-                border: 'none',
                 background: isActive ? '#0a2540' : 'transparent',
                 color: isActive ? '#ffffff' : '#64748b',
-                fontWeight: '600',
-                fontSize: '0.88rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
               }}
             >
               <Icon size={16} color={isActive ? '#f59e0b' : '#64748b'} />
@@ -517,25 +500,11 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
       {/* MODAL 1: OFFICIAL GOVERNMENT STUDENT IDENTITY CARD MODAL                   */}
       {/* ========================================================================= */}
       {showIdCardModal && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'rgba(5, 19, 41, 0.85)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1300,
-            padding: '20px',
-          }}
-        >
+        <div className="responsive-modal-overlay">
           <div
+            className="responsive-modal-box"
             style={{
-              background: '#ffffff',
-              borderRadius: '16px',
               maxWidth: '520px',
-              width: '100%',
               overflow: 'hidden',
               boxShadow: '0 25px 60px -15px rgba(0,0,0,0.5)',
               border: '2px solid #d97706',
@@ -694,28 +663,11 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
       {/* MODAL 2: OFFICIAL GOVERNMENT TAX INVOICE & FEE RECEIPT                      */}
       {/* ========================================================================= */}
       {selectedInvoice && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'rgba(5, 19, 41, 0.85)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1350,
-            padding: '20px',
-          }}
-        >
+        <div className="responsive-modal-overlay">
           <div
+            className="responsive-modal-box"
             style={{
-              background: '#ffffff',
-              borderRadius: '12px',
               maxWidth: '680px',
-              width: '100%',
-              maxHeight: '92vh',
-              overflowY: 'auto',
-              boxShadow: '0 25px 60px -15px rgba(0,0,0,0.5)',
               border: '1px solid #cbd5e1',
             }}
           >
@@ -738,9 +690,9 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
               </button>
             </div>
 
-            <div style={{ padding: '28px' }}>
+            <div style={{ padding: '24px' }}>
               {/* Receipt Metadata */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px', fontSize: '0.85rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '24px', fontSize: '0.85rem' }}>
                 <div>
                   <div style={{ color: '#64748b', fontSize: '0.75rem', textTransform: 'uppercase' }}>Receipt Reference:</div>
                   <strong style={{ color: '#0a2540', fontSize: '1rem' }}>{selectedInvoice.receiptNumber || 'RCPT-ONLINE'}</strong>
@@ -748,7 +700,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                   <div style={{ color: '#64748b' }}>Date: {new Date(selectedInvoice.createdAt).toLocaleDateString('en-IN', { dateStyle: 'long' })}</div>
                 </div>
 
-                <div style={{ textAlign: 'right' }}>
+                <div>
                   <div style={{ color: '#64748b', fontSize: '0.75rem', textTransform: 'uppercase' }}>Candidate Details:</div>
                   <strong style={{ color: '#0a2540' }}>{user?.name}</strong>
                   <div style={{ color: '#64748b' }}>{user?.email}</div>
@@ -757,7 +709,8 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
               </div>
 
               {/* Itemized Table */}
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', marginBottom: '24px' }}>
+              <div className="table-responsive">
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', marginBottom: '24px' }}>
                 <thead>
                   <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1', textAlign: 'left', color: '#0a2540' }}>
                     <th style={{ padding: '10px 12px' }}>Description</th>
@@ -793,6 +746,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                   </tr>
                 </tbody>
               </table>
+            </div>
 
               {/* Transaction Gateway Audit */}
               <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '14px 18px', marginBottom: '24px', fontSize: '0.82rem' }}>

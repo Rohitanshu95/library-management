@@ -456,6 +456,113 @@ body {
 }
 
 /* ==============================================================
+   RESPONSIVE UTILITIES & LAYOUT FOUNDATIONS
+   ============================================================== */
+
+.page-container {
+  max-width: 1200px;
+  margin: 30px auto 80px;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.responsive-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  padding: 24px 30px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-md);
+  border-bottom: 3px solid #d97706;
+}
+
+.responsive-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.responsive-banner-right {
+  text-align: right;
+}
+
+.responsive-tabs-bar {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 28px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.responsive-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.responsive-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 42px;
+  transition: all 0.2s ease;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.table-responsive table {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
+}
+
+.responsive-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 19, 41, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1300;
+  padding: 16px;
+}
+
+.responsive-modal-box {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+}
+
+.responsive-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ==============================================================
    RESPONSIVE MEDIA QUERIES (Mobile, iOS, Android, Tablets, Laptops)
    ============================================================== */
 
@@ -479,6 +586,9 @@ body {
   .brand-titles p {
     font-size: 0.65rem;
   }
+  .page-container {
+    padding: 0 18px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -498,16 +608,60 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
+  .page-container {
+    margin: 18px auto 60px;
+    padding: 0 14px;
+  }
+  .responsive-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 16px;
+  }
+  .responsive-banner-right {
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 12px;
+  }
+  .responsive-card-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
-  .demo-quickbar {
-    bottom: 8px;
-    right: 8px;
-    left: 8px;
-    border-radius: 12px;
-    justify-content: flex-start;
+  /* Prevent iOS automatic zoom on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  .responsive-modal-overlay {
+    padding: 10px;
+    align-items: flex-end;
+  }
+  .responsive-modal-box {
+    max-height: 94vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .razorpay-body-layout {
+    flex-direction: column !important;
+  }
+  .razorpay-methods-sidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+  .razorpay-methods-sidebar button {
+    border-left: none !important;
+    border-bottom: 3px solid transparent !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 10px 14px !important;
   }
 }
 
@@ -529,5 +683,18 @@ body {
   }
   .brand-titles p {
     display: none;
+  }
+  .page-container {
+    padding: 0 12px;
+    margin: 14px auto 50px;
+  }
+  .responsive-banner-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .btn-primary, .btn-accent, .btn-outline {
+    width: 100%;
+    justify-content: center;
   }
 }

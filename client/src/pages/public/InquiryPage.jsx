@@ -43,7 +43,7 @@ export const InquiryPage = () => {
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '40px auto 80px', padding: '0 24px' }}>
+    <div style={{ maxWidth: '960px', margin: '30px auto 80px', padding: '0 16px' }}>
       <div style={{ textAlign: 'center', marginBottom: '36px' }}>
         <div style={{ color: '#d97706', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
           CITIZEN ADMISSIONS & CANDIDATE GUIDANCE
@@ -56,7 +56,7 @@ export const InquiryPage = () => {
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '28px' }}>
         {/* Form Card */}
         <div className="gov-card" style={{ padding: '32px' }}>
           {successResponse ? (

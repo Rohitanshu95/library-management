@@ -418,9 +418,10 @@ export const CheckoutModal = ({ isOpen, onClose, item, onSuccess }) => {
             </div>
 
             {/* Main Gateway Body with Left Tabs and Right Form */}
-            <div style={{ display: 'flex', flex: 1, minHeight: '340px', background: '#f8fafc' }}>
+            <div className="razorpay-body-layout" style={{ display: 'flex', flex: 1, minHeight: '340px', background: '#f8fafc' }}>
               {/* Left Method Tabs */}
               <div
+                className="razorpay-methods-sidebar"
                 style={{
                   width: '200px',
                   background: '#ffffff',

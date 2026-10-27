@@ -194,35 +194,33 @@ export const AdminDashboard = () => {
   };
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '30px auto 80px', padding: '0 24px' }}>
+    <div className="page-container">
       {/* Official Secretariat Header */}
       <div
+        className="responsive-banner"
         style={{
           background: 'linear-gradient(135deg, #051329 0%, #0a2540 100%)',
           color: '#ffffff',
-          borderRadius: '12px',
-          padding: '24px 30px',
-          marginBottom: '30px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          boxShadow: 'var(--shadow-md)',
-          borderBottom: '3px solid #d97706',
         }}
       >
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f59e0b', fontSize: '0.8rem', fontWeight: 'bold' }}>
-            <Sparkles size={16} /> STATE ACADEMY ADMINISTRATIVE COMMAND CONSOLE
+        <div className="responsive-banner-left">
+          <div className="gov-seal-icon" style={{ flexShrink: 0 }}>
+            <Sparkles size={20} />
           </div>
-          <h2 style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, Georgia, serif', margin: '4px 0 0' }}>
-            Officer Command & Monitoring Dashboard
-          </h2>
-          <p style={{ margin: '4px 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>
-            Logged in as: <strong style={{ color: '#ffffff' }}>{user?.name}</strong> ({user?.role})
-          </p>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f59e0b', fontSize: '0.8rem', fontWeight: 'bold', flexWrap: 'wrap' }}>
+              STATE ACADEMY ADMINISTRATIVE COMMAND CONSOLE
+            </div>
+            <h2 style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, Georgia, serif', margin: '4px 0 0' }}>
+              Officer Command & Monitoring Dashboard
+            </h2>
+            <p style={{ margin: '4px 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>
+              Logged in as: <strong style={{ color: '#ffffff' }}>{user?.name}</strong> ({user?.role})
+            </p>
+          </div>
         </div>
 
-        <div style={{ textAlign: 'right' }}>
+        <div className="responsive-banner-right">
           <span style={{ background: 'rgba(52, 211, 153, 0.2)', border: '1px solid #34d399', color: '#a7f3d0', fontSize: '0.75rem', fontWeight: 'bold', padding: '4px 12px', borderRadius: '12px' }}>
             PORTAL LIVE & SYNCHRONIZED
           </span>
@@ -233,7 +231,7 @@ export const AdminDashboard = () => {
       </div>
 
       {/* KPI Overview Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '30px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '28px' }}>
         <div className="gov-card" style={{ padding: '20px', borderLeft: '4px solid #3b82f6' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
@@ -296,7 +294,7 @@ export const AdminDashboard = () => {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '8px', borderBottom: '2px solid #e2e8f0', marginBottom: '28px', overflowX: 'auto', paddingBottom: '4px' }}>
+      <div className="responsive-tabs-bar">
         {[
           { id: 'overview', label: 'Revenue & Operations Ledger' },
           { id: 'users', label: `Aspirants Directory (${students.length})` },
@@ -309,17 +307,10 @@ export const AdminDashboard = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
+              className="responsive-tab-btn"
               style={{
-                padding: '10px 18px',
-                border: 'none',
                 background: isActive ? '#0a2540' : 'transparent',
                 color: isActive ? '#ffffff' : '#64748b',
-                fontWeight: '600',
-                fontSize: '0.88rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
               }}
             >
               {tab.label}
@@ -330,7 +321,7 @@ export const AdminDashboard = () => {
 
       {/* TAB 1: OVERVIEW & REVENUE BREAKDOWN */}
       {activeTab === 'overview' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '28px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
           <div className="gov-card" style={{ padding: '24px' }}>
             <h3 style={{ color: '#0a2540', marginBottom: '16px' }}>Recent Verified Orders & Admissions</h3>
             {transactions.length > 0 ? (
@@ -416,8 +407,8 @@ export const AdminDashboard = () => {
           </div>
 
           {/* Aspirants Table */}
-          <div className="gov-card" style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', textAlign: 'left' }}>
+          <div className="gov-card" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <table style={{ width: '100%', minWidth: '700px', borderCollapse: 'collapse', fontSize: '0.88rem', textAlign: 'left' }}>
               <thead>
                 <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0', color: '#0a2540' }}>
                   <th style={{ padding: '12px 16px' }}>Candidate Name</th>
@@ -667,7 +658,7 @@ export const AdminDashboard = () => {
 
       {/* TAB 4: INQUIRY CRM PIPELINE */}
       {activeTab === 'inquiries' && (
-        <div style={{ display: 'grid', gridTemplateColumns: selectedInquiry ? '1fr 380px' : '1fr', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: selectedInquiry ? 'repeat(auto-fit, minmax(300px, 1fr))' : '1fr', gap: '24px' }}>
           <div className="gov-card" style={{ padding: '24px' }}>
             <h3 style={{ color: '#0a2540', marginBottom: '16px' }}>Student Inquiry CRM Inbox ({inquiries.length})</h3>
             {inquiries.length > 0 ? (
@@ -788,7 +779,7 @@ export const AdminDashboard = () => {
             )}
 
             <form onSubmit={handleRecordExpense}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', color: '#334155', marginBottom: '4px' }}>
                     Expense Category *
