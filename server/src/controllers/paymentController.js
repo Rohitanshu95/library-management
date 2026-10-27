@@ -54,17 +54,22 @@ export const createOrder = async (req, res) => {
 
     let razorpayOrderId = `order_sim_${Date.now()}`;
 
-    // If real Razorpay keys are configured, create on Razorpay API; otherwise simulate order ID
-    if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_ID.startsWith('rzp_live')) {
+    // If Razorpay keys are configured, create order via Razorpay API
+    const activeKeyId = process.env.RAZORPAY_KEY_ID || 'rzp_test_TspMUewlZ9hPxg';
+    const activeKeySecret = process.env.RAZORPAY_KEY_SECRET || 'jo66IYWa0Gx2VGv5wyg8SPmi';
+
+    if (activeKeyId && !activeKeyId.includes('demo')) {
       try {
-        const rzpOrder = await razorpay.orders.create({
-          amount: amount * 100, // paise
+        const rzp = new Razorpay({ key_id: activeKeyId, key_secret: activeKeySecret });
+        const rzpOrder = await rzp.orders.create({
+          amount: Math.round(amount * 100), // in paise
           currency: 'INR',
           receipt: orderNumber,
         });
         razorpayOrderId = rzpOrder.id;
+        console.log(`Razorpay order created successfully: ${razorpayOrderId} for amount: ₹${amount}`);
       } catch (err) {
-        console.warn('Real Razorpay order create failed, falling back to simulated order:', err.message);
+        console.warn('Razorpay order creation fallback:', err.message);
       }
     }
 
@@ -89,7 +94,7 @@ export const createOrder = async (req, res) => {
         amount: order.amount,
         currency: order.currency,
         razorpayOrderId: order.razorpayOrderId,
-        razorpayKeyId: process.env.RAZORPAY_KEY_ID || 'rzp_test_demo_gateway_key',
+        razorpayKeyId: activeKeyId,
       },
     });
   } catch (error) {
