@@ -121,7 +121,7 @@ export const sendPaymentActivationEmail = async ({
             ${detailsHtml}
 
             <div style="text-align: center; margin-top: 25px;">
-              <a href="http://localhost:5173/student/dashboard" style="background: #0a2540; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: bold; display: inline-block;">
+              <a href="${process.env.CLIENT_URL || 'http://localhost:5173'}" style="background: #0a2540; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: bold; display: inline-block;">
                 Access Student Dashboard
               </a>
             </div>
