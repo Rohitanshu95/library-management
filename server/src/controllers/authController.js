@@ -185,6 +185,10 @@ export const updateProfile = async (req, res) => {
       });
     }
 
+    // Ensure nested objects exist
+    if (!user.profile) user.profile = {};
+    if (!user.profile.address) user.profile.address = {};
+
     // Update persistent profile fields
     if (fatherName !== undefined) user.profile.fatherName = fatherName;
     if (dob !== undefined) user.profile.dob = dob;

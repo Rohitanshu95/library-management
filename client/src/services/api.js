@@ -241,4 +241,29 @@ export const api = {
     });
     return res.json();
   },
+
+  // Admin User Dossier & Management
+  getAllUsers: async (search = '', targetExam = '', status = '') => {
+    const res = await fetch(
+      `${API_BASE}/admin/users?search=${encodeURIComponent(search)}&targetExam=${targetExam}&status=${status}`,
+      { headers: getHeaders() }
+    );
+    return res.json();
+  },
+
+  getUserDossier: async (userId) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}`, {
+      headers: getHeaders(),
+    });
+    return res.json();
+  },
+
+  updateUserStatus: async (userId, status) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}/status`, {
+      method: 'PUT',
+      headers: getHeaders(),
+      body: JSON.stringify({ status }),
+    });
+    return res.json();
+  },
 };

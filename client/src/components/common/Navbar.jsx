@@ -14,6 +14,7 @@ import {
   Sparkles,
   Menu,
   X,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { useAuth } from '../../state/AuthContext';
 
@@ -134,6 +135,15 @@ export const Navbar = ({ onOpenAuth }) => {
               </li>
               <li>
                 <button
+                  className={`nav-item-btn ${activeTab === 'gallery' ? 'active' : ''}`}
+                  onClick={() => handleNavClick('gallery')}
+                >
+                  <ImageIcon size={16} />
+                  Campus Gallery
+                </button>
+              </li>
+              <li>
+                <button
                   className={`nav-item-btn ${activeTab === 'inquiry' ? 'active' : ''}`}
                   onClick={() => handleNavClick('inquiry')}
                 >
@@ -203,6 +213,9 @@ export const Navbar = ({ onOpenAuth }) => {
             </button>
             <button className={`mobile-nav-item ${activeTab === 'tests' ? 'active' : ''}`} onClick={() => handleNavClick('tests')}>
               <Clock size={16} /> Mock Tests
+            </button>
+            <button className={`mobile-nav-item ${activeTab === 'gallery' ? 'active' : ''}`} onClick={() => handleNavClick('gallery')}>
+              <ImageIcon size={16} /> Campus Gallery
             </button>
             <button className={`mobile-nav-item ${activeTab === 'inquiry' ? 'active' : ''}`} onClick={() => handleNavClick('inquiry')}>
               <Send size={16} /> Inquiry Desk

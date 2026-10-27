@@ -128,6 +128,166 @@ export const LibraryPlansPage = ({ onApplyPlan }) => {
           })}
         </div>
       )}
+
+      {/* Interactive Live Floor Plan & Desk Map Visualizer */}
+      <div style={{ marginTop: '50px' }}>
+        <div
+          className="gov-card"
+          style={{
+            padding: '32px',
+            background: '#ffffff',
+            border: '1px solid #cbd5e1',
+            borderRadius: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#059669', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                <ShieldCheck size={16} /> LIVE PHYSICAL CAPACITY MONITOR
+              </div>
+              <h2 style={{ fontSize: '1.45rem', color: '#0a2540', margin: '4px 0 6px', fontFamily: 'Cinzel, Georgia, serif' }}>
+                Main Reading Hall • Floor 1 Desk Map
+              </h2>
+              <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b' }}>
+                Click any numbered desk cubicle to inspect amenities, orientation, and current availability status.
+              </p>
+            </div>
+
+            {/* Legend */}
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', background: '#f8fafc', padding: '10px 16px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.78rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '14px', height: '14px', borderRadius: '3px', background: '#dcfce7', border: '1px solid #86efac' }} />
+                <span>Available</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '14px', height: '14px', borderRadius: '3px', background: '#fee2e2', border: '1px solid #fca5a5' }} />
+                <span>Occupied</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '14px', height: '14px', borderRadius: '3px', background: '#fef3c7', border: '1px solid #fde68a' }} />
+                <span>Silent Zone</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Floor Layout Rows */}
+          <div style={{ background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+            {/* Row A: Silent Cubicles */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
+                Row A — North Wing Silent Cubicles (A-01 to A-10)
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px' }}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                  const isOccupied = [2, 4, 5, 8].includes(num);
+                  return (
+                    <div
+                      key={`A-${num}`}
+                      title={`Desk A-${String(num).padStart(2, '0')}: ${isOccupied ? 'Occupied' : 'Available'}`}
+                      style={{
+                        padding: '10px 4px',
+                        textAlign: 'center',
+                        fontSize: '0.75rem',
+                        fontWeight: '700',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        background: isOccupied ? '#fee2e2' : '#fef3c7',
+                        border: isOccupied ? '1px solid #fca5a5' : '1px solid #fde68a',
+                        color: isOccupied ? '#991b1b' : '#92400e',
+                        transition: 'transform 0.15s ease',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    >
+                      A-{String(num).padStart(2, '0')}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Row B: General Reading Desks */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
+                Row B — Central Air-Conditioned Hall (B-01 to B-10)
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px' }}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                  const isOccupied = [1, 3, 6, 7, 9, 10].includes(num);
+                  return (
+                    <div
+                      key={`B-${num}`}
+                      title={`Desk B-${String(num).padStart(2, '0')}: ${isOccupied ? 'Occupied' : 'Available'}`}
+                      style={{
+                        padding: '10px 4px',
+                        textAlign: 'center',
+                        fontSize: '0.75rem',
+                        fontWeight: '700',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        background: isOccupied ? '#fee2e2' : '#dcfce7',
+                        border: isOccupied ? '1px solid #fca5a5' : '1px solid #86efac',
+                        color: isOccupied ? '#991b1b' : '#166534',
+                        transition: 'transform 0.15s ease',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    >
+                      B-{String(num).padStart(2, '0')}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Row C: Digital Workstation Desks */}
+            <div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
+                Row C — LAN & Power Workstations (C-01 to C-10)
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px' }}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                  const isOccupied = [2, 5, 7].includes(num);
+                  return (
+                    <div
+                      key={`C-${num}`}
+                      title={`Desk C-${String(num).padStart(2, '0')}: ${isOccupied ? 'Occupied' : 'Available'}`}
+                      style={{
+                        padding: '10px 4px',
+                        textAlign: 'center',
+                        fontSize: '0.75rem',
+                        fontWeight: '700',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        background: isOccupied ? '#fee2e2' : '#dcfce7',
+                        border: isOccupied ? '1px solid #fca5a5' : '1px solid #86efac',
+                        color: isOccupied ? '#991b1b' : '#166534',
+                        transition: 'transform 0.15s ease',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    >
+                      C-{String(num).padStart(2, '0')}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Metrics Bar */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '0.85rem', color: '#475569' }}>
+            <div>
+              Current Shift Status: <strong>Morning Shift (06:00 AM - 01:00 PM)</strong>
+            </div>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <span>Total Stations: <strong>30</strong></span>
+              <span style={{ color: '#dc2626' }}>Occupied: <strong>13</strong></span>
+              <span style={{ color: '#16a34a', fontWeight: 'bold' }}>Available Now: 17</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

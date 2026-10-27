@@ -10,6 +10,7 @@ import { CoursesCatalogPage } from './pages/public/CoursesCatalogPage';
 import { PdfsCatalogPage } from './pages/public/PdfsCatalogPage';
 import { TestsCatalogPage } from './pages/public/TestsCatalogPage';
 import { InquiryPage } from './pages/public/InquiryPage';
+import { GalleryPage } from './pages/public/GalleryPage';
 import { StudentDashboard } from './pages/student/StudentDashboard';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { ExamRoomPage } from './pages/student/ExamRoomPage';
@@ -80,6 +81,7 @@ const MainApp = () => {
             {activeTab === 'tests' && (
               <TestsCatalogPage onStartTest={() => setInExamRoom(true)} />
             )}
+            {activeTab === 'gallery' && <GalleryPage />}
             {activeTab === 'inquiry' && <InquiryPage />}
             {activeTab === 'student_dashboard' && (
               <StudentDashboard

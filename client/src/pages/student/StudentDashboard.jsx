@@ -14,6 +14,9 @@ import {
   CreditCard,
   MapPin,
   Sparkles,
+  Printer,
+  X,
+  Award,
 } from 'lucide-react';
 import { api } from '../../services/api';
 import { useAuth } from '../../state/AuthContext';
@@ -27,6 +30,10 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
   const [testHistory, setTestHistory] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Modals for Printable Credentials
+  const [showIdCardModal, setShowIdCardModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] = useState(null);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -50,8 +57,28 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
         setLoading(false);
       }
     };
-    fetchDashboardData();
-  }, []);
+    if (user) {
+      fetchDashboardData();
+    } else {
+      setLoading(false);
+    }
+  }, [user]);
+
+  if (!user) {
+    return (
+      <div style={{ maxWidth: '560px', margin: '80px auto', padding: '36px 24px', textAlign: 'center', background: '#ffffff', borderRadius: '12px', border: '1px solid #cbd5e1', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.08)' }}>
+        <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: '#e0f2fe', color: '#0369a1', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+          <User size={32} />
+        </div>
+        <h3 style={{ fontSize: '1.3rem', color: '#0a2540', fontFamily: 'Cinzel, Georgia, serif', marginBottom: '8px' }}>
+          Candidate Authentication Required
+        </h3>
+        <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '20px' }}>
+          Please sign in to your registered student account to access your digital library passes, enrolled courses, and exam scorecards.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: '1200px', margin: '30px auto 80px', padding: '0 24px' }}>
@@ -202,6 +229,18 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                   <p style={{ margin: '0 0 4px 0' }}>• Access is strictly limited to your assigned shift timing.</p>
                   <p style={{ margin: 0, color: '#059669' }}>✓ Verified biometric identity token linked.</p>
                 </div>
+              </div>
+
+              {/* Action Button: Print Official ID Card */}
+              <div style={{ marginTop: '18px', paddingTop: '16px', borderTop: '1px dashed #cbd5e1', display: 'flex', justifyContent: 'flex-end' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowIdCardModal(true)}
+                  className="btn-primary"
+                  style={{ padding: '9px 18px', fontSize: '0.85rem', gap: '8px' }}
+                >
+                  <Printer size={16} /> View & Print Official Student ID Card
+                </button>
               </div>
             </div>
           ) : (
@@ -392,11 +431,21 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                     Receipt: {tx.receiptNumber || 'RCPT-ONLINE'} • Order: {tx.orderNumber} • {new Date(tx.createdAt).toLocaleDateString('en-IN')}
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
                   <div style={{ fontWeight: 'bold', color: '#047857', fontSize: '1.1rem' }}>₹{tx.amount}</div>
-                  <span style={{ fontSize: '0.72rem', background: '#dcfce7', color: '#166534', padding: '2px 8px', borderRadius: '4px', fontWeight: 'bold' }}>
-                    PAID / CONFIRMED
-                  </span>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.72rem', background: '#dcfce7', color: '#166534', padding: '2px 8px', borderRadius: '4px', fontWeight: 'bold' }}>
+                      PAID / CONFIRMED
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedInvoice(tx)}
+                      className="btn-outline"
+                      style={{ padding: '3px 8px', fontSize: '0.72rem', gap: '4px' }}
+                    >
+                      <Printer size={12} /> Tax Invoice
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -436,6 +485,320 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
             <div>
               <span style={{ color: '#64748b', display: 'block', fontSize: '0.78rem' }}>Target Examination:</span>
               <strong style={{ color: '#d97706' }}>{user?.profile?.targetExam || 'OPSC / OAS'}</strong>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MODAL 1: OFFICIAL GOVERNMENT STUDENT IDENTITY CARD MODAL                   */}
+      {/* ========================================================================= */}
+      {showIdCardModal && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(5, 19, 41, 0.85)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1300,
+            padding: '20px',
+          }}
+        >
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              maxWidth: '520px',
+              width: '100%',
+              overflow: 'hidden',
+              boxShadow: '0 25px 60px -15px rgba(0,0,0,0.5)',
+              border: '2px solid #d97706',
+            }}
+          >
+            {/* ID Card Header */}
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #051329 0%, #0a2540 100%)',
+                color: '#ffffff',
+                padding: '20px 24px',
+                textAlign: 'center',
+                position: 'relative',
+                borderBottom: '3px solid #d97706',
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setShowIdCardModal(false)}
+                style={{
+                  position: 'absolute',
+                  top: '14px',
+                  right: '14px',
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#94a3b8',
+                  cursor: 'pointer',
+                }}
+              >
+                <X size={20} />
+              </button>
+              <div style={{ fontSize: '0.75rem', color: '#fbbf24', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                GOVERNMENT OF ODISHA • HIGHER EDUCATION
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontFamily: 'Cinzel, Georgia, serif', margin: '4px 0 2px', color: '#ffffff' }}>
+                STATE ACADEMY OF CIVIL SERVICES
+              </h3>
+              <div style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>
+                OFFICIAL ASPIRANT IDENTITY & SMART CARD
+              </div>
+            </div>
+
+            {/* ID Card Body */}
+            <div style={{ padding: '24px', background: '#fdfbf7' }}>
+              <div style={{ display: 'flex', gap: '20px', marginBottom: '18px' }}>
+                {/* Photo & Hologram */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                  <img
+                    src={user?.avatar || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=250'}
+                    alt={user?.name}
+                    style={{
+                      width: '95px',
+                      height: '115px',
+                      objectFit: 'cover',
+                      borderRadius: '6px',
+                      border: '2px solid #d97706',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                    }}
+                  />
+                  <div
+                    style={{
+                      background: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)',
+                      color: '#0a2540',
+                      fontSize: '0.62rem',
+                      fontWeight: '900',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      letterSpacing: '0.5px',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    ★ VERIFIED 2026 ★
+                  </div>
+                </div>
+
+                {/* Candidate Particulars */}
+                <div style={{ flex: 1, fontSize: '0.82rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <div>
+                    <span style={{ fontSize: '0.7rem', color: '#64748b', textTransform: 'uppercase', display: 'block' }}>Candidate Full Name</span>
+                    <strong style={{ fontSize: '1.05rem', color: '#0a2540', fontFamily: 'Cinzel, serif' }}>{user?.name}</strong>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                    <div>
+                      <span style={{ fontSize: '0.68rem', color: '#64748b', display: 'block' }}>Roll Number</span>
+                      <strong style={{ color: '#0a2540' }}>STU-2026-0042</strong>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: '0.68rem', color: '#64748b', display: 'block' }}>Membership ID</span>
+                      <strong style={{ color: '#d97706' }}>{subData?.subscription?.membershipId || 'LIB-2026-0101'}</strong>
+                    </div>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: '0.68rem', color: '#64748b', display: 'block' }}>Target Examination</span>
+                    <strong style={{ color: '#0369a1' }}>{user?.profile?.targetExam || 'OPSC OAS / UPSC CSE'}</strong>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: '0.68rem', color: '#64748b', display: 'block' }}>Reading Shift</span>
+                    <span>{subData?.subscription?.timeSlot?.name || 'General Access'} ({subData?.subscription?.timeSlot?.timings || '08:00 AM - 02:00 PM'})</span>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: '0.68rem', color: '#64748b', display: 'block' }}>Card Validity</span>
+                    <strong style={{ color: '#059669' }}>
+                      {subData?.subscription?.endDate
+                        ? new Date(subData.subscription.endDate).toLocaleDateString('en-IN', { dateStyle: 'medium' })
+                        : 'December 31, 2026'}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* Barcode & Security Strip */}
+              <div
+                style={{
+                  borderTop: '1px dashed #cbd5e1',
+                  paddingTop: '12px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <div style={{ fontFamily: 'monospace', letterSpacing: '3px', fontWeight: 'bold', fontSize: '0.9rem', color: '#0a2540' }}>
+                    |||||| | |||||||| |||| | ||||
+                  </div>
+                  <div style={{ fontSize: '0.65rem', color: '#64748b' }}>STU-ODISHA-2026-AUTH</div>
+                </div>
+
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 'bold', color: '#0a2540' }}>DIRECTOR GENERAL</div>
+                  <div style={{ fontSize: '0.62rem', color: '#64748b' }}>Authorized Signatory</div>
+                </div>
+              </div>
+            </div>
+
+            {/* ID Card Footer Actions */}
+            <div style={{ padding: '14px 24px', background: '#ffffff', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Present at physical turnstile gate for entry</span>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={() => window.print()}
+                style={{ padding: '8px 16px', fontSize: '0.82rem', gap: '6px' }}
+              >
+                <Printer size={15} /> Print / Save Card
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MODAL 2: OFFICIAL GOVERNMENT TAX INVOICE & FEE RECEIPT                      */}
+      {/* ========================================================================= */}
+      {selectedInvoice && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(5, 19, 41, 0.85)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1350,
+            padding: '20px',
+          }}
+        >
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: '12px',
+              maxWidth: '680px',
+              width: '100%',
+              maxHeight: '92vh',
+              overflowY: 'auto',
+              boxShadow: '0 25px 60px -15px rgba(0,0,0,0.5)',
+              border: '1px solid #cbd5e1',
+            }}
+          >
+            {/* Print Header */}
+            <div style={{ background: '#0a2540', color: 'white', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: '#f59e0b', fontWeight: 'bold', letterSpacing: '0.5px' }}>
+                  GOVERNMENT OF ODISHA • OFFICIAL FEE RECEIPT
+                </span>
+                <h3 style={{ margin: '2px 0 0', fontSize: '1.2rem', fontFamily: 'Cinzel, Georgia, serif' }}>
+                  State Academy of Civil Services
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedInvoice(null)}
+                style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ padding: '28px' }}>
+              {/* Receipt Metadata */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px', fontSize: '0.85rem' }}>
+                <div>
+                  <div style={{ color: '#64748b', fontSize: '0.75rem', textTransform: 'uppercase' }}>Receipt Reference:</div>
+                  <strong style={{ color: '#0a2540', fontSize: '1rem' }}>{selectedInvoice.receiptNumber || 'RCPT-ONLINE'}</strong>
+                  <div style={{ color: '#64748b', marginTop: '4px' }}>Order: {selectedInvoice.orderNumber}</div>
+                  <div style={{ color: '#64748b' }}>Date: {new Date(selectedInvoice.createdAt).toLocaleDateString('en-IN', { dateStyle: 'long' })}</div>
+                </div>
+
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ color: '#64748b', fontSize: '0.75rem', textTransform: 'uppercase' }}>Candidate Details:</div>
+                  <strong style={{ color: '#0a2540' }}>{user?.name}</strong>
+                  <div style={{ color: '#64748b' }}>{user?.email}</div>
+                  <div style={{ color: '#64748b' }}>+91 {user?.phone}</div>
+                </div>
+              </div>
+
+              {/* Itemized Table */}
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', marginBottom: '24px' }}>
+                <thead>
+                  <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1', textAlign: 'left', color: '#0a2540' }}>
+                    <th style={{ padding: '10px 12px' }}>Description</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'center' }}>SAC Code</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'right' }}>Amount (INR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                    <td style={{ padding: '12px' }}>
+                      <strong style={{ color: '#0a2540' }}>{selectedInvoice.itemTitle}</strong>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Academic Programme & Learning Access Entitlement</div>
+                    </td>
+                    <td style={{ padding: '12px', textAlign: 'center', color: '#64748b' }}>999293</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold' }}>₹{selectedInvoice.amount}</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #e2e8f0', color: '#64748b', fontSize: '0.82rem' }}>
+                    <td style={{ padding: '8px 12px' }}>CGST (9.0%) — Subsidized by Govt. of Odisha</td>
+                    <td style={{ padding: '8px 12px', textAlign: 'center' }}>—</td>
+                    <td style={{ padding: '8px 12px', textAlign: 'right', color: '#16a34a' }}>WAIVED (₹0)</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #e2e8f0', color: '#64748b', fontSize: '0.82rem' }}>
+                    <td style={{ padding: '8px 12px' }}>SGST (9.0%) — Subsidized by Govt. of Odisha</td>
+                    <td style={{ padding: '8px 12px', textAlign: 'center' }}>—</td>
+                    <td style={{ padding: '8px 12px', textAlign: 'right', color: '#16a34a' }}>WAIVED (₹0)</td>
+                  </tr>
+                  <tr style={{ background: '#f8fafc' }}>
+                    <td style={{ padding: '12px', fontWeight: 'bold', color: '#0a2540', fontSize: '0.98rem' }}>Total Fee Paid (Net):</td>
+                    <td style={{ padding: '12px' }}></td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: '800', color: '#0a2540', fontSize: '1.2rem', fontFamily: 'Cinzel, serif' }}>
+                      ₹{selectedInvoice.amount}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              {/* Transaction Gateway Audit */}
+              <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '14px 18px', marginBottom: '24px', fontSize: '0.82rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#166534', fontWeight: 'bold', marginBottom: '4px' }}>
+                  <ShieldCheck size={16} /> Verified via Razorpay Secure Gateway
+                </div>
+                <div style={{ color: '#15803d' }}>
+                  Payment ID: <strong style={{ fontFamily: 'monospace' }}>{selectedInvoice.razorpayPaymentId || 'pay_rzp_gateway'}</strong> • Status: <strong>PAID & SETTLED</strong>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+                <button
+                  type="button"
+                  className="btn-outline"
+                  onClick={() => setSelectedInvoice(null)}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  onClick={() => window.print()}
+                  style={{ gap: '6px' }}
+                >
+                  <Printer size={16} /> Print Tax Invoice
+                </button>
+              </div>
             </div>
           </div>
         </div>
