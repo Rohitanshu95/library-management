@@ -49,7 +49,7 @@ export const register = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: 'Candidate registration successful! Welcome to the State Public Academy.',
+      message: 'Candidate registration successful! Welcome to College For Competitive Studies (C2S).',
       token,
       user: {
         id: newUser._id,

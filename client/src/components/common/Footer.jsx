@@ -12,7 +12,7 @@ export const Footer = () => {
                 <Landmark size={20} />
               </div>
               <h3 style={{ color: '#ffffff', fontSize: '1rem', fontFamily: 'Cinzel, Georgia, serif' }}>
-                STATE PUBLIC ACADEMY
+                COLLEGE FOR COMPETITIVE STUDIES (C2S)
               </h3>
             </div>
             <p style={{ fontSize: '0.85rem', lineHeight: '1.6', color: '#94a3b8' }}>
@@ -54,7 +54,7 @@ export const Footer = () => {
               Statutory Disclaimers
             </h4>
             <p style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: '1.6' }}>
-              Content owned, maintained and operated by State Academy of Civil Services. Hosted by Government Data Center. All rights reserved under National Intellectual Property Rights Act.
+              Content owned, maintained and operated by College For Competitive Studies (C2S). Hosted by Government Data Center. All rights reserved under National Intellectual Property Rights Act.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '12px', color: '#34d399', fontSize: '0.78rem' }}>
               <ShieldCheck size={16} /> 256-Bit SSL Secure Citizen Portal
@@ -63,7 +63,7 @@ export const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} State Academy of Civil Services & Central Library. Government of Odisha.</p>
+          <p>© {new Date().getFullYear()} College For Competitive Studies (C2S) & Central Library. Government of Odisha.</p>
           <div style={{ display: 'flex', gap: '20px' }}>
             <span>Right to Information (RTI)</span>
             <span>Terms of Service</span>

@@ -65,7 +65,7 @@ export const CheckoutModal = ({ isOpen, onClose, item, onSuccess }) => {
         key: orderData.razorpayKeyId || 'rzp_test_TspMUewlZ9hPxg',
         amount: Math.round(orderData.amount * 100), // paise
         currency: orderData.currency || 'INR',
-        name: 'State Academy of Civil Services',
+        name: 'College For Competitive Studies (C2S)',
         description: `${orderData.itemTitle} (Govt. of Odisha)`,
         image: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
         order_id: orderData.razorpayOrderId.startsWith('order_sim_') ? undefined : orderData.razorpayOrderId,
@@ -186,7 +186,7 @@ export const CheckoutModal = ({ isOpen, onClose, item, onSuccess }) => {
                 <X size={20} />
               </button>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f59e0b', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                <ShieldCheck size={16} /> STATE ACADEMY OFFICIAL ADMISSION PORTAL
+                <ShieldCheck size={16} /> COLLEGE FOR COMPETITIVE STUDIES (C2S) ADMISSION PORTAL
               </div>
               <h3 style={{ margin: '6px 0 0', fontSize: '1.25rem', fontFamily: 'Cinzel, Georgia, serif' }}>
                 Admission & Fee Checkout

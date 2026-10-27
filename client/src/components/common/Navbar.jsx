@@ -104,7 +104,7 @@ export const Navbar = ({ onOpenAuth }) => {
               <Landmark size={22} />
             </div>
             <div className="brand-titles">
-              <h1>STATE ACADEMY OF CIVIL SERVICES</h1>
+              <h1>COLLEGE FOR COMPETITIVE STUDIES (C2S)</h1>
               <p>
                 {isAdmin
                   ? 'Secretariat Administrative Command Console & Library Operations'
@@ -187,7 +187,7 @@ export const Navbar = ({ onOpenAuth }) => {
                     <button
                       className={`nav-item-btn ${activeTab === 'home' ? 'active' : ''}`}
                       onClick={() => handleNavClick('home')}
-                      title="Preview public academy website"
+                      title="Preview College For Competitive Studies (C2S) website"
                     >
                       <Globe size={15} />
                       Public View

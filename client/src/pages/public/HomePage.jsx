@@ -47,7 +47,7 @@ export const HomePage = ({ onOpenAuth, onSelectPlan }) => {
               }}
             >
               <Sparkles size={14} color="#f59e0b" />
-              STATE APEX CIVIL SERVICES TRAINING & DIGITAL LEARNING CENTER
+              COLLEGE FOR COMPETITIVE STUDIES (C2S) • APEX DIGITAL LEARNING CENTER
             </div>
 
             <h1
@@ -199,7 +199,7 @@ export const HomePage = ({ onOpenAuth, onSelectPlan }) => {
             INFRASTRUCTURE & ACADEMIC FACILITIES
           </div>
           <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '1.6rem', color: '#0a2540', marginTop: '6px' }}>
-            Verified Academy Campus & Digital Reading Halls
+            Verified C2S Campus & Digital Reading Halls
           </h2>
         </div>
 

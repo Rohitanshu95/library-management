@@ -74,7 +74,7 @@ export const AdminDashboard = () => {
           Restricted Secretariat Command Console
         </h3>
         <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '24px' }}>
-          Access to this official administrative console is restricted exclusively to authorized State Academy administrative officers, examiners, and reception operators.
+          Access to this official administrative console is restricted exclusively to authorized College For Competitive Studies (C2S) administrative officers, examiners, and reception operators.
         </p>
         <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '12px 16px', fontSize: '0.82rem', color: '#475569', marginBottom: '24px' }}>
           Official Admin Account: <strong>admin@stateacademy.gov.in</strong>
@@ -209,7 +209,7 @@ export const AdminDashboard = () => {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f59e0b', fontSize: '0.8rem', fontWeight: 'bold', flexWrap: 'wrap' }}>
-              STATE ACADEMY ADMINISTRATIVE COMMAND CONSOLE
+              COLLEGE FOR COMPETITIVE STUDIES (C2S) COMMAND CONSOLE
             </div>
             <h2 style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, Georgia, serif', margin: '4px 0 0' }}>
               Officer Command & Monitoring Dashboard

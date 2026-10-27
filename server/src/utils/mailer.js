@@ -88,8 +88,8 @@ export const sendPaymentActivationEmail = async ({
         <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
           <!-- Header -->
           <div style="background: #0a2540; color: #ffffff; padding: 24px; text-align: center;">
-            <h2 style="margin: 0; font-size: 20px; letter-spacing: 0.5px;">STATE PUBLIC ACADEMY</h2>
-            <p style="margin: 6px 0 0 0; font-size: 13px; color: #94a3b8;">Institute of Civil Services & Public Digital Library</p>
+            <h2 style="margin: 0; font-size: 20px; letter-spacing: 0.5px;">COLLEGE FOR COMPETITIVE STUDIES (C2S)</h2>
+            <p style="margin: 6px 0 0 0; font-size: 13px; color: #94a3b8;">Physical Digital Library & Examination Resource Center</p>
           </div>
           
           <!-- Body -->
@@ -136,7 +136,7 @@ export const sendPaymentActivationEmail = async ({
     `;
 
     const info = await mailClient.sendMail({
-      from: process.env.EMAIL_FROM || '"State Public Academy" <notifications@stateacademy.gov.in>',
+      from: process.env.EMAIL_FROM || '"College For Competitive Studies (C2S)" <notifications@stateacademy.gov.in>',
       to,
       subject: `Payment Confirmed & Entitlement Activated: ${orderNumber}`,
       html: htmlContent,

@@ -11,7 +11,7 @@ const startServer = async () => {
   try {
     await connectDB();
     app.listen(PORT, () => {
-      console.log(`[Server] State Academy API Server running at http://localhost:${PORT}`);
+      console.log(`[Server] College For Competitive Studies (C2S) API Server running at http://localhost:${PORT}`);
       console.log(`[Server] Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (error) {

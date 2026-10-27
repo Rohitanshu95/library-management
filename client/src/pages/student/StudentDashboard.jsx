@@ -90,7 +90,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
           Official Administrator Account Active
         </h3>
         <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '24px' }}>
-          You are currently signed in as an Academy Administrative Officer (<strong>{user.email}</strong>). Student learning records and library desk passes are scoped exclusively to registered student accounts.
+          You are currently signed in as a C2S Administrative Officer (<strong>{user.email}</strong>). Student learning records and library desk passes are scoped exclusively to registered student accounts.
         </p>
         <button
           className="btn-primary"
@@ -186,7 +186,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                 <div>
                   <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#059669', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    OFFICIAL STATE ACADEMY DIGITAL LIBRARY CARD
+                    OFFICIAL C2S DIGITAL LIBRARY CARD
                   </div>
                   <h3 style={{ fontSize: '1.3rem', color: '#0a2540', margin: '4px 0 0' }}>
                     {subData.subscription?.plan?.name || 'Quarterly Dedicated Plan'}
@@ -540,7 +540,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                 GOVERNMENT OF ODISHA • HIGHER EDUCATION
               </div>
               <h3 style={{ fontSize: '1.25rem', fontFamily: 'Cinzel, Georgia, serif', margin: '4px 0 2px', color: '#ffffff' }}>
-                STATE ACADEMY OF CIVIL SERVICES
+                COLLEGE FOR COMPETITIVE STUDIES (C2S)
               </h3>
               <div style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>
                 OFFICIAL ASPIRANT IDENTITY & SMART CARD
@@ -678,7 +678,7 @@ export const StudentDashboard = ({ onOpenTestRoom, onOpenVideoPlayer }) => {
                   GOVERNMENT OF ODISHA • OFFICIAL FEE RECEIPT
                 </span>
                 <h3 style={{ margin: '2px 0 0', fontSize: '1.2rem', fontFamily: 'Cinzel, Georgia, serif' }}>
-                  State Academy of Civil Services
+                  College For Competitive Studies (C2S)
                 </h3>
               </div>
               <button

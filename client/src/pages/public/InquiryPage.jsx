@@ -185,7 +185,7 @@ export const InquiryPage = () => {
             <div style={{ fontSize: '0.85rem', color: '#475569', lineHeight: '1.8' }}>
               <p><strong>Physical Address:</strong></p>
               <p style={{ color: '#64748b', marginBottom: '12px' }}>
-                State Academy Central Library Building, Sachivalaya Marg, Unit 3, Bhubaneswar, Odisha 751001
+                College For Competitive Studies (C2S) Central Library Building, Sachivalaya Marg, Unit 3, Bhubaneswar, Odisha 751001
               </p>
               <p><strong>Office Timings:</strong></p>
               <p style={{ color: '#64748b', marginBottom: '12px' }}>

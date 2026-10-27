@@ -179,7 +179,7 @@ export const ExamRoomPage = ({ onExit }) => {
         }}
       >
         <div>
-          <div style={{ fontSize: '0.75rem', color: '#f59e0b', fontWeight: 'bold' }}>STATE PUBLIC ACADEMY CBT ENGINE</div>
+          <div style={{ fontSize: '0.75rem', color: '#f59e0b', fontWeight: 'bold' }}>COLLEGE FOR COMPETITIVE STUDIES (C2S) CBT ENGINE</div>
           <h3 style={{ margin: '2px 0 0', fontSize: '1.1rem', fontFamily: 'Cinzel, Georgia, serif' }}>
             {testData?.test?.title}
           </h3>

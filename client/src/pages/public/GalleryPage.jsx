@@ -65,7 +65,7 @@ const GALLERY_ITEMS = [
     category: 'TOPPERS',
     categoryLabel: 'Toppers & Felicitations',
     imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000',
-    description: 'Annual felicitation ceremony honoring Academy scholars who cracked OPSC OAS and UPSC CSE with top All-India ranks.',
+    description: 'Annual felicitation ceremony honoring C2S scholars who cracked OPSC OAS and UPSC CSE with top All-India ranks.',
     features: ['Rank 1 & Top 10 Rankers 2024-25', 'State Hon’ble Chief Guest Address', 'Cash Scholarships & Trophies', 'Alumni Mentorship Registry'],
     date: 'Annual State Conclave 2025',
     location: 'Main Institutional Convention Center',
@@ -90,7 +90,7 @@ const GALLERY_ITEMS = [
     description: 'Automated QR code & RFID gate turnstiles linked to the cloud attendance system for real-time seat tracking.',
     features: ['Instant QR verification under 0.5s', 'Automated SMS/Email entry log', '24x7 Security & CCTV surveillance', 'Visitor bag scanner'],
     date: 'Installed 2026',
-    location: 'Main Academy Entrance Lobby',
+    location: 'Main C2S Campus Entrance Lobby',
   },
   {
     id: 8,
@@ -166,7 +166,7 @@ export const GalleryPage = () => {
       >
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '820px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(217, 119, 6, 0.25)', border: '1px solid #f59e0b', color: '#fbbf24', padding: '4px 12px', borderRadius: '16px', fontSize: '0.78rem', fontWeight: 'bold', marginBottom: '14px' }}>
-            <Building size={14} /> STATE PUBLIC SERVICE ACADEMY • CAMPUS INFRASTRUCTURE
+            <Building size={14} /> COLLEGE FOR COMPETITIVE STUDIES (C2S) • CAMPUS INFRASTRUCTURE
           </div>
           <h1 style={{ fontSize: '2.1rem', fontFamily: 'Cinzel, Georgia, serif', margin: '0 0 10px', color: '#ffffff', letterSpacing: '0.5px' }}>
             Campus & Study Infrastructure Gallery
@@ -350,7 +350,7 @@ export const GalleryPage = () => {
             Schedule an On-Campus Orientation Tour
           </h3>
           <p style={{ margin: 0, fontSize: '0.88rem', color: '#475569', maxWidth: '640px' }}>
-            Prospective aspirants and parents may visit the State Academy between 09:00 AM and 05:00 PM (Monday to Saturday) to tour the facilities, inspect sample desk cubicles, and interact with academic counselors.
+            Prospective aspirants and parents may visit College For Competitive Studies (C2S) between 09:00 AM and 05:00 PM (Monday to Saturday) to tour the facilities, inspect sample desk cubicles, and interact with academic counselors.
           </p>
         </div>
 

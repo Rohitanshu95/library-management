@@ -70,7 +70,7 @@ export const ProfileApplicationModal = ({ isOpen, onClose, onComplete, targetIte
             Complete Your Admission Profile
           </h3>
           <p style={{ margin: '4px 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>
-            Applying for: <strong style={{ color: '#ffffff' }}>{targetItemName || 'Academy Admission'}</strong>. This information is saved permanently to your student file.
+            Applying for: <strong style={{ color: '#ffffff' }}>{targetItemName || 'C2S Admission'}</strong>. This information is saved permanently to your student file.
           </p>
         </div>
 
